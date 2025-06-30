@@ -7,7 +7,7 @@
 - поиск по названию и действующему веществу
 - синхронизацию между устройствами через Firebase Firestore
 
-![screenshot.png](https://ibb.co/JwX2WFRd)
+![img.png](img.png)
 
 ---
 
