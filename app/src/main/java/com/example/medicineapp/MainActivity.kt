@@ -108,9 +108,9 @@ class MainActivity : AppCompatActivity() {
         )
         monthSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, months)
 
-        // Годы от текущего до +10
+        // Годы от текущего-4 до +10
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        val years = (currentYear..(currentYear + 10)).map { it.toString() }
+        val years = ((currentYear - 4)..(currentYear + 10)).map { it.toString() }
         yearSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
 
         if (editMedicine != null) {
