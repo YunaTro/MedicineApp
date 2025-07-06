@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             showAddMedicineDialog()
         }
         MedicineRepository.listen { list ->
-            fullList = list
+            fullList = list.sortedBy { it.expirationDate }
             adapter.updateList(fullList)
         }
     }
