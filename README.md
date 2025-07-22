@@ -6,6 +6,7 @@
 - срок годности и количество с единицами измерения
 - поиск по названию и действующему веществу
 - синхронизацию между устройствами через Firebase Firestore
+- авторизацию членов семьи по почте и паролю
 
 ![img.png](img.png)
 
@@ -16,6 +17,7 @@
 - Язык: Kotlin
 - UI: Android View (XML + RecyclerView)
 - Синхронизация: Firebase Firestore
+- Авторизация: Firebase Authentication
 - Минимальный SDK: 21 (Android 5.0)
 
 ---
@@ -36,7 +38,8 @@ cd medicine-app
 - Создать новый проект в Firebase Console
 - Добавить Android-приложение, указав package name, например: com.example.medicineapp
 - Скачать google-services.json и поместить его в папку app/
-- Включить Cloud Firestore (в режиме тестирования)
+- Включите Cloud Firestore (в режиме **production**, с безопасными правилами доступа)
+- Включите Email/Password в разделе "Authentication → Sign-in method"
 
 4. Выполнение сборки:
 
@@ -50,4 +53,5 @@ cd medicine-app
 - Поиск лекарства по названию или действующему веществу
 - Сортировка по сроку годности
 - Синхронизация Firebase и поддержка нескольких устройств
+- Авторизация по почте и паролю
     
