@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.ArrayAdapter
@@ -154,6 +155,19 @@ class MainActivity : AppCompatActivity() {
             .show()
 
     }
+    fun showDeleteDialog(onDeleteConfirmed: () -> Unit) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Удалить лекарство?")
+            .setMessage("Это действие нельзя отменить.")
+            .setNegativeButton("Отменить") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton("Удалить") { dialog, _ ->
+                dialog.dismiss()
+                onDeleteConfirmed() // вызываем переданный обработчик удаления
+            }
+            .show()
+    }
     private fun showMedicineOptionsDialog(medicine: Medicine) {
         AlertDialog.Builder(this)
             .setTitle(medicine.name)
@@ -162,9 +176,11 @@ class MainActivity : AppCompatActivity() {
                 showAddMedicineDialog(editMedicine = medicine)
             }
             .setNegativeButton("Удалить") { _, _ ->
-                fullList = fullList.filter { it != medicine }
-                adapter.updateList(fullList)
-                MedicineRepository.delete(medicine)
+                showDeleteDialog {
+                    fullList = fullList.filter { it != medicine }
+                    adapter.updateList(fullList)
+                    MedicineRepository.delete(medicine)
+                }
             }
             .setNeutralButton("Отмена", null)
             .show()
